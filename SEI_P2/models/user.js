@@ -8,7 +8,23 @@ const userSchema = new Schema({
     required: true
   },
   email: String,
-  avatar: String
+  avatar: String,
+  dateOfBirth: Date,
+  weight: Number,
+  height: Number,
+  workouts: [
+    {
+
+    }
+  ],
+  goal: {
+    type: String,
+    enum: [
+      "improve shape",
+      "get faster",
+      "lean and tone"
+    ]
+  }
 }, {
   timestamps: true
 });

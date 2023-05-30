@@ -1,0 +1,81 @@
+<%- include("../partials/header") %>
+  <h1> Select your workout plan</h1>
+  <div>Create a Workout Plan</div>
+
+  
+    <div class ="form-floating"> 
+      <input disabled class="form-control" name="title" id="title" value="<%=plan.title%>" type="text"/>
+      <label class="form-label" for="title">Plan Name</label>
+    </div>
+    <h3>Exercises</h3>
+    <% plan.exercises.forEach(function (exercise){ %>
+      <div class="row mb-2">
+        <div class="col-3">
+          <div class="form-floating ">
+            <input disabled class="form-control" name="name" id="name" value="<%=exercise.name%>" />
+            <label for="name">Exercise Name</label>
+          </div>
+        </div>
+  
+      <div class="col-3">
+        <div class="form-floating">
+          <input disabled class="form-control" name="timeAlloc" id="timeAlloc" value="<%=exercise.timeAlloc%>" />
+          <label for="timeAlloc">Duration</label>
+        </div>
+      </div>
+  
+      <div class="col-3">
+        <div class="form-floating">
+          <input disabled class="form-control" name="set" id="set" value="<%=exercise.set%>" />
+          <label for="timeAlloc">Set</label>
+        </div>
+      </div>
+  
+      <div class="col-3">
+        <div class="form-floating">
+          <input disabled class="form-control" name="rep" id="rep" value="<%=exercise.rep%>"/>
+          <label for="rep">Rep</label>
+        </div>
+    </div>
+      
+  
+
+    <% }) %>
+    <form method="POST" action="/workout-plan/<%=plan._id%>/exercise?_method=PUT">
+    <div class="row mb-2">
+      <div class="col-3">
+        <div class="form-floating ">
+          <input class="form-control" name="name" id="name" />
+          <label for="name">Exercise Name</label>
+        </div>
+      </div>
+
+    <div class="col-3">
+      <div class="form-floating">
+        <input class="form-control" name="timeAlloc" id="timeAlloc" />
+        <label for="timeAlloc">Duration</label>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <div class="form-floating">
+        <input class="form-control" name="set" id="set" />
+        <label for="timeAlloc">Set</label>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <div class="form-floating">
+        <input class="form-control" name="rep" id="rep" />
+        <label for="rep">Rep</label>
+      </div>
+
+  </div>
+    
+  </div>
+    <button class="col-12 btn btn-primary">Submit</button>
+  </form>
+
+
+
+  <%- include("../partials/footer") %>

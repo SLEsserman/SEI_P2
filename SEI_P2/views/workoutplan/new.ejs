@@ -2,69 +2,14 @@
   <h1> Select your workout plan</h1>
   <div>Create a Workout Plan</div>
 
-  <form>
+  <form method="POST" action="/workout-plan">
     <div class ="form-floating"> 
       <input class="form-control" name="title" id="title" type="text"/>
       <label class="form-label" for="title">Plan Name</label>
     </div>
-    <h3>Exercises</h3>
-    <div id="exercise-container"></div>
-   
+    <button class="col-12 btn btn-primary mt-3">Submit</button>
   </form>
 
-  <script>
-    const RowTemplate =  `<div class="row">
-      <div class="col-3">
-        <div class="form-floating ">
-          <input class="form-control" name="name" id="name" />
-          <label for="name">Exercise Name</label>
-        </div>
-      </div>
-
-    <div class="col-3">
-      <div class="form-floating">
-        <input class="form-control" name="timeAlloc" id="timeAlloc" />
-        <label for="timeAlloc">Duration</label>
-      </div>
-    </div>
-
-    <div class="col-2">
-      <div class="form-floating">
-        <input class="form-control" name="set" id="set" />
-        <label for="timeAlloc">Set</label>
-      </div>
-    </div>
-
-    <div class="col-2">
-      <div class="form-floating">
-        <input class="form-control" name="rep" id="rep" />
-        <label for="rep">Rep</label>
-      </div>
-
-  </div>
-    <div class="col-2">
-      <button type="button" class="btn btn-primary px-2 py-1 add-row" >+</button>
-    </div>
-  </div>`
-  window.onload = function (){
-    var exerciseFormRows = [
-     RowTemplate
-    ]; 
-
-    const exerciseContainer = document.getElementById("exercise-container");
-    
-   exerciseContainer.innerHTML =  exerciseFormRows.join("")
-
-   const addButtons = document.getElementsByClassName("add-row")
-
-   addButtons.forEach((button, index)=>{
-    button.addEventListener("click", function(){
-      console.log("add button at index " +index  + " clicked!")
-    })
-   })
-  }
-    
-
-    </script>
+  
 
   <%- include("../partials/footer") %>

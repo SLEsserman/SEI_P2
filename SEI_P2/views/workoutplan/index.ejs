@@ -1,5 +1,8 @@
 <%- include("../partials/header") %>
-  <h1> Workout plan will be here</h1>
+  <h1> Workout plans</h1>
+  <% plans.forEach(function(plan){ %>
+    <div><%=plan.title %></div>
+    <%  }) %>
  <a href="/workout-plan/new"> <button> Go create new Plan </button></a>
 
   <%- include("../partials/footer") %>

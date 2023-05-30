@@ -34,24 +34,14 @@ const exerciseSchema = new Schema(
       type: Number, // seconds
     },
     rep: Number,
+    set: Number,
   },
   { timestamps: true }
 )
 
-const workoutSchema = new Schema(
+const workoutPlanSchema = new Schema(
   {
     title: { type: String, required: true }, // this will be the workout
-    workoutRating: {
-      type: String,
-      enum: ["Beginner", "Intermidate", "Hard"],
-    },
-    muscleGroup: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "muscleGroup",
-      },
-    ],
-    workingoutToday: { type: Boolean, default: true },
     reviews: [reviewSchema],
     exercises: [exerciseSchema],
   },
@@ -61,4 +51,4 @@ const workoutSchema = new Schema(
 )
 
 // Compile the schema into a model and export it
-module.exports = mongoose.model("Workout", workoutSchema)
+module.exports = mongoose.model("WorkoutPlan", workoutPlanSchema)

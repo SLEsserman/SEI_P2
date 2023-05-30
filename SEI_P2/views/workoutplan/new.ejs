@@ -1,0 +1,32 @@
+<%- include("../partials/header") %>
+  <h1> Select your workout plan</h1>
+  <div>Create a Workout Plan</div>
+
+  <form>
+    <div class ="form-floating"> 
+      <input class="form-control" name="title" id="title" type="text"/>
+      <label class="form-label" for="title">Plan Name</label>
+    </div>
+    <h3>Exercises</h3>
+    <div class="col-12">
+      <div class="form-floating col-3">
+        <input class="form-control" name="name" id="name" />
+        <label for="name">Exercise Name</label>
+      </div>
+      <div class="form-floating col-3">
+        <input class="form-control" name="timeAlloc" id="timeAlloc" />
+        <label for="timeAlloc">Duration</label>
+      </div>
+      <div class="form-floating col-2">
+        <input class="form-control" name="set" id="set" />
+        <label for="timeAlloc">Set</label>
+      </div>
+      <div class="form-floating col-2">
+        <input class="form-control" name="rep" id="rep" />
+        <label for="rep">Rep</label>
+      </div>
+      <div class="col-2"> <button class="btn btn-primary px-2 py-1" >+</button></div>
+    </di>
+  </form>
+
+  <%- include("../partials/footer") %>

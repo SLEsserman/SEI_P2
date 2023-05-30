@@ -1,7 +1,8 @@
 const mongoose = require("mongoose")
-// optional shortcut to the mongoose.Schema class
+// Optional shortcut to the mongoose.Schema class
 const Schema = mongoose.Schema
 
+// Define the review schema
 const reviewSchema = new Schema(
   {
     content: {
@@ -27,6 +28,7 @@ const reviewSchema = new Schema(
   }
 )
 
+// Define the exercise schema
 const exerciseSchema = new Schema(
   {
     name: String,
@@ -35,15 +37,18 @@ const exerciseSchema = new Schema(
     },
     rep: Number,
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 )
 
+// Define the workout schema
 const workoutSchema = new Schema(
   {
-    title: { type: String, required: true }, // this will be the workout
+    title: { type: String, required: true },
     workoutRating: {
       type: String,
-      enum: ["Beginner", "Intermidate", "Hard"],
+      enum: ["Beginner", "Intermediate", "Hard"],
     },
     muscleGroup: [
       {
@@ -60,5 +65,5 @@ const workoutSchema = new Schema(
   }
 )
 
-// Compile the schema into a model and export it
+// Compile the schema into a model named "Workout" and export it
 module.exports = mongoose.model("Workout", workoutSchema)

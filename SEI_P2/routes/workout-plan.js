@@ -4,10 +4,12 @@ const WorkoutPlan = require("../models/workoutplan")
 var router = express.Router()
 
 /* GET users listing. */
-router.get("/", ensureLoggedIn, function (req, res, next) {
+router.get("/", ensureLoggedIn, async function (req, res, next) {
   // Render the "workoutplan/index" view with the title as the user's name followed by "'s Workout plans"
+  const plans = await WorkoutPlan.find({})
   res.render("workoutplan/index", {
     title: req.user.name + "'s Workout plans",
+    plans,
   })
 })
 
@@ -47,6 +49,14 @@ router.put("/:id/exercise", ensureLoggedIn, async function (req, res) {
   await workoutPlan.save()
 
   res.redirect("/workout-plan/" + workoutPlan._id)
+})
+
+router.delete("/:id", ensureLoggedIn, async function (req, res) {
+  // Render the "workoutplan/new" view with the title "Create Workout plans"
+  let planId = req.params.id
+  await WorkoutPlan.findByIdAndDelete(planId)
+
+  res.redirect("/workout-plan/")
 })
 
 module.exports = router

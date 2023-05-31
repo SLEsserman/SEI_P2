@@ -49,6 +49,8 @@ const workoutPlanSchema = new Schema(
     title: { type: String, required: true },
     reviews: [reviewSchema],
     exercises: [exerciseSchema],
+    owner: {}
+    //add reference to user model
   },
   {
     timestamps: true,

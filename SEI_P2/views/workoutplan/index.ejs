@@ -1,8 +1,20 @@
 <%- include("../partials/header") %>
+<div class="container">
   <h1> Workout plans</h1>
   <% plans.forEach(function(plan){ %>
-    <div><%=plan.title %></div>
+    <div class="row mb-3">
+    <div class="col-6"><%=plan.title %></div>
+    <div class="col-6">
+      <form method="POST" action="/workout-plan/<%=plan._id%>?_method=DELETE">
+      <a href="/workout-plan/<%= plan._id %>"><button type="button" class="btn btn-primary mr-2">Edit</button></a>
+    <button type="submit" class="ml-2 btn btn-danger">Delete</button>
+    </form>
+    </div>
+  
+  </div>
     <%  }) %>
- <a href="/workout-plan/new"> <button> Go create new Plan </button></a>
+<a href="/workout-plan/new"> <button class="btn btn-primary"> Go create new Plan </button></a>
+</div>
+  
 
   <%- include("../partials/footer") %>

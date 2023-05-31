@@ -1,6 +1,7 @@
 <%- include("../partials/header") %>
+<div class="container">
   <h1> Select your workout plan</h1>
-  <div>Create a Workout Plan</div>
+  <div>Update Workout Plan</div>
 
   
     <div class ="form-floating"> 
@@ -9,7 +10,8 @@
     </div>
     <h3>Exercises</h3>
     <% plan.exercises.forEach(function (exercise){ %>
-      <div class="row mb-2">
+      <div class="my-2">
+      <div class="row">
         <div class="col-3">
           <div class="form-floating ">
             <input disabled class="form-control" name="name" id="name" value="<%=exercise.name%>" />
@@ -24,25 +26,27 @@
         </div>
       </div>
   
-      <div class="col-3">
+      <div class="col-2">
         <div class="form-floating">
           <input disabled class="form-control" name="set" id="set" value="<%=exercise.set%>" />
           <label for="timeAlloc">Set</label>
         </div>
       </div>
   
-      <div class="col-3">
+      <div class="col-2">
         <div class="form-floating">
           <input disabled class="form-control" name="rep" id="rep" value="<%=exercise.rep%>"/>
           <label for="rep">Rep</label>
         </div>
     </div>
+    <div class="col-2">
+      <form method="POST" action="/workout-plan/<%=plan._id%>/exercise?_method=DELETE"><button class="btn btn-danger">Delete</button></form>
+    </div>
       
-  
-
+  </div>
     <% }) %>
     <form method="POST" action="/workout-plan/<%=plan._id%>/exercise?_method=PUT">
-    <div class="row mb-2">
+    <div class="row my-2">
       <div class="col-3">
         <div class="form-floating ">
           <input class="form-control" name="name" id="name" />
@@ -57,25 +61,30 @@
       </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-2">
       <div class="form-floating">
         <input class="form-control" name="set" id="set" />
         <label for="timeAlloc">Set</label>
       </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-2">
       <div class="form-floating">
         <input class="form-control" name="rep" id="rep" />
         <label for="rep">Rep</label>
       </div>
 
   </div>
+  <div class="col-2">
+    <button class="col-12 btn btn-primary">Add</button>
+  </div>
     
   </div>
-    <button class="col-12 btn btn-primary">Submit</button>
+    
   </form>
 
+</div>
+ 
 
 
   <%- include("../partials/footer") %>

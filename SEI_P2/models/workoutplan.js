@@ -49,8 +49,12 @@ const workoutPlanSchema = new Schema(
     title: { type: String, required: true },
     reviews: [reviewSchema],
     exercises: [exerciseSchema],
-    owner: {}
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
     //add reference to user model
+    //of the models there are two of the same ones and i need to choose one that i want to keep and one to drop
   },
   {
     timestamps: true,

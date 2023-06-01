@@ -14,7 +14,7 @@ const userSchema = new Schema(
     dateOfBirth: Date,
     weight: Number,
     height: String,
-    workouts: [{}],
+    //made reference to workout plan
     goal: {
       type: String,
       enum: ["Improve Shape", "Get Faster", "Lean & Tone"],

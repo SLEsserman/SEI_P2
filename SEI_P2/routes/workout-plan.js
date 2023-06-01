@@ -6,7 +6,7 @@ var router = express.Router()
 /* GET users listing. */
 router.get("/", ensureLoggedIn, async function (req, res, next) {
   // Render the "workoutplan/index" view with the title as the user's name followed by "'s Workout plans"
-  const plans = await WorkoutPlan.find({})
+  const plans = await WorkoutPlan.find({ owner: req.user._id })
   res.render("workoutplan/index", {
     title: req.user.name + "'s Workout plans",
     plans,
@@ -16,9 +16,10 @@ router.get("/", ensureLoggedIn, async function (req, res, next) {
 router.post("/", ensureLoggedIn, async function (req, res) {
   // Render the "workoutplan/new" view with the title "Create Workout plans"
 
-  let workoutPlan = await WorkoutPlan.create(req.body)
-  console.log("req body", req.body)
-  console.log("plan", workoutPlan)
+  let workoutPlan = await WorkoutPlan.create({
+    ...req.body,
+    owner: req.user._id,
+  })
   res.redirect("/workout-plan/" + workoutPlan._id)
 })
 
@@ -58,5 +59,26 @@ router.delete("/:id", ensureLoggedIn, async function (req, res) {
 
   res.redirect("/workout-plan/")
 })
+
+router.delete(
+  "/:id/exercise/:exerciseId",
+  ensureLoggedIn,
+  async function (req, res) {
+    // Render the "workoutplan/new" view with the title "Create Workout plans"
+    let planId = req.params.id
+
+    let workoutPlan = await WorkoutPlan.findById(planId)
+
+    let newExercises = workoutPlan.exercises.filter(
+      (exercise) => exercise._id != req.params.exerciseId
+    )
+
+
+    workoutPlan.exercises = newExercises
+    await workoutPlan.save()
+
+    res.redirect("/workout-plan/" + workoutPlan._id)
+  }
+)
 
 module.exports = router
